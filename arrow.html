@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="changeStyle()">Change Style</button>
+
+    <style>
+        #h1 {
+            width: 1000px;
+            height: 30px;
+            background-color: aquamarine;
+            text-align: center;
+        }
+    </style>
+
+    <div id="h1">
+        Serves Southeast Asia as well.
+
+        
+    </div>
+    <p>The brand was first introduced as Hotstar for a streaming service carrying content from Disney Star's local networks, including films, television series, live sports, and original programming, as well as featuring content licensed from third-parties such as Showtime among others. Amid the</p>
+
+    <script>
+        const main = document.getElementById("h1");
+        
+        const changeStyle = () => {
+            main.style.color = "blue";
+            main.style.fontSize = "20px";
+            main.style.backgroundColor = "red";
+        };
+    </script>
+</body>
+</html>
