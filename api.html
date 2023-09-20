@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Search using Pixabay API</title>
+</head>
+<body>
+    <input type="text" id="searchInput" placeholder="Search for images">
+    <button id="searchButton">Search</button>
+    <div id="imageContainer"></div>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const searchButton = document.getElementById('searchButton');
+        const imageContainer = document.getElementById('imageContainer');
+
+        // Event listener for the search button
+        searchButton.addEventListener('click', () => {
+            const query = searchInput.value;
+            if (query) {
+                searchImages(query);
+            }
+        });
+
+        function searchImages(query) {
+            // Define your Pixabay API key here
+            const apiKey = 'YOUR_PIXABAY_API_KEY';
+
+            // Construct the URL for the Pixabay API
+            const apiUrl = `https://pixabay.com/api/?key=${apiKey}&q=${query}`;
+
+            // Make a GET request to the API
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Process the response data and display images
+                    displayImages(data.hits);
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+        }
+
+        function displayImages(images) {
+            // Clear previous results
+            imageContainer.innerHTML = '';
+
+            // Display each image in the container
+            images.forEach(image => {
+                const imgElement = document.createElement('img');
+                imgElement.src = image.webformatURL;
+                imgElement.alt = image.tags;
+                imageContainer.appendChild(imgElement);
+            });
+        }
+    </script>
+</body>
+</html>
